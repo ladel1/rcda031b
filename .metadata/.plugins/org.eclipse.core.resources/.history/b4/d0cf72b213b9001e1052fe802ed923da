@@ -1,0 +1,5 @@
+package com.eni.jeuxvideo.bll;
+
+public class GameServiceImpl implements GameService {
+
+}

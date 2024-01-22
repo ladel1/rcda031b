@@ -1,0 +1,5 @@
+package com.eni.jeuxvideo.dal;
+
+public interface GameDao {
+
+}

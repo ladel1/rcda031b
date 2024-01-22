@@ -1,0 +1,21 @@
+package com.eni.jeuxvideo.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+
+@Controller
+public class GameController {
+
+	
+	@GetMapping("/jeux/ajouter")
+	public SomeData getMethodName(@RequestParam String param) {
+		return new SomeData();
+	}
+	
+	public String index() {
+		return "";
+	}
+	
+}

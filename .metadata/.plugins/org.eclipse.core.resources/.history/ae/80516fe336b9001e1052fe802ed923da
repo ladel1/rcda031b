@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://thymeleaf.org" >
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<title>Ajouter un jeu</title>
+</head>
+<body>
+	
+	<div class="container">
+		<header>
+			<nav class="navbar navbar-expand-lg bg-body-tertiary">
+			  <div class="container-fluid">
+			    <a class="navbar-brand" href="#">Mini-JVC</a>
+			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			      <span class="navbar-toggler-icon"></span>
+			    </button>
+			    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			      <div class="navbar-nav">
+			        <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+			        <a class="nav-link" th:href="@{/jeux/ajouter}">Ajouter un jeu</a>
+			        <a class="nav-link" href="#">Liste de jeux</a>
+			        <a class="nav-link" href="#">Contact</a>
+			      </div>
+			    </div>
+			  </div>
+			</nav>		
+		</header>
+		<main>
+			<div class="row text-center mt-5">
+				<h1>Ajouter un jeu</h1>
+			</div>
+			<div class="row">
+				<div class="col-8 offset-2">
+					<form method="POST" th:action="@{/jeux/ajouter}" th:object="${game}" >
+						<div class="mb-3">
+						  <label for="titre" class="form-label">Titre</label>
+						  <input type="text" class="form-control" id="titre" th:field="*{titre}" placeholder="ex. StarField">
+						</div>
+						<div class="mb-3">
+						  <label for="description" class="form-label">Description</label>
+						  <textarea class="form-control" id="description" th:field="*{description}" rows="4" ></textarea>
+						</div>
+						<div class="mb-3">
+						  <label for="platform" class="form-label">Platforme</label>
+						  <input type="text" class="form-control" id="platform" th:field="*{platform}" placeholder="ex. PlayStation">
+						</div>
+						<div class="mb-3">
+						  <label for="editeur" class="form-label">Editeur</label>
+						  <input type="text" class="form-control" id="editeur" th:field="*{editeur}" placeholder="ex. Bethesda Game Studios">
+						</div>
+						<div class="mb-3">
+						  <label for="genre" class="form-label">Genre</label>
+						  <input type="text" class="form-control" id="genre" th:field="*{genre}" placeholder="ex. Aventure">
+						</div>
+						<div class="mb-3">
+						  <label for="dateSortie" class="form-label">Date de sortie</label>
+						  <input type="date" class="form-control" id="dateSortie" th:field="*{dateSortie}" placeholder="ex. 2024-02-23">
+						</div>
+						<div class="mb-3">
+						  <label for="pegi" class="form-label">PEGI</label>
+						  <input type="number" class="form-control" id="pegi" th:field="*{pegi}" placeholder="ex. 16">
+						</div>
+						<div class="mb-3">
+						  <label for="mode" class="form-label">Mode</label>
+						  <input type="text" class="form-control" id="mode" th:field="*{mode}" placeholder="ex. Solo|CO-OP">
+						</div>
+						<button type="submit" class="btn btn-dark" >Ajouter</button>
+					</form>
+				</div>
+			</div>
+		</main>
+		<footer class="row bg-dark text-white mt-5">
+			<p class="text-center py-5">
+				Mini-JVC &copy; 2024
+			</p>
+		</footer>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

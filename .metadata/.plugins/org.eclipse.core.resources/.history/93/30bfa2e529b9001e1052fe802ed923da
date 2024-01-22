@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://thymeleaf.org" >
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<title>Liste de jeux</title>
+</head>
+<body>
+	
+	<div class="container">
+		<header>
+			<nav class="navbar navbar-expand-lg bg-body-tertiary">
+			  <div class="container-fluid">
+			    <a class="navbar-brand" href="#">Mini-JVC</a>
+			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			      <span class="navbar-toggler-icon"></span>
+			    </button>
+			    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			      <div class="navbar-nav">
+			        <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+			        <a class="nav-link" th:href="@{/jeux/ajouter}">Ajouter un jeu</a>
+			        <a class="nav-link" href="#">Liste de jeux</a>
+			        <a class="nav-link" href="#">Contact</a>
+			      </div>
+			    </div>
+			  </div>
+			</nav>		
+		</header>
+		<main>
+			<div class="row text-center mt-5">
+				<h1>Liste de jeux</h1>												
+			</div>
+			<div class="row">
+				<div class="col-8 offset-2">
+						<table>
+							<thead>
+								<tr>
+									<th>Titre</th>
+									<th>Résumé</th>
+									<th>Genre</th>
+									<th>Date de sortie</th>
+									<th>Platforme</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="game:${games}" th:object="${game}" >
+									<td th:text="*{titre}" ></td>
+									<td th:text="*{description.substring(0,30)}" ></td>
+									<td th:text="*{genre}" ></td>
+									<td th:text="*{dateSortie}" ></td>
+									<td th:text="*{platform}" ></td>
+									<td>
+										<a class="btn btn-info" th:href="@{/games/detail/{id}(id=*{id}) }">
+											<i class="fa-regular fa-eye" ></i>
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+				</div>
+			</div>
+		</main>
+		<footer class="row bg-dark text-white mt-5">
+			<p class="text-center py-5">
+				Mini-JVC &copy; 2024
+			</p>
+		</footer>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

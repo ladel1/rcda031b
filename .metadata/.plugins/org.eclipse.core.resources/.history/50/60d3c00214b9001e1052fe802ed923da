@@ -1,0 +1,38 @@
+package com.eni.jeuxvideo.bll;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.eni.jeuxvideo.bo.Game;
+
+@Service
+public class GameServiceImpl implements GameService {
+
+	
+	@Override
+	public void ajouter(Game game) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void modifier(Game game) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Game selectionnerParId(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Game> selectionnerTous() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
+}

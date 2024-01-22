@@ -1,0 +1,21 @@
+package com.eni.jeuxvideo.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.eni.jeuxvideo.bo.Game;
+
+
+@Controller
+public class GameController {
+
+	
+	@GetMapping("/jeux/ajouter")
+	public String afficherFormulaire(Model model) {
+		model.addAttribute("game", new Game());
+		return "jeux/ajouter";
+	}
+	
+}

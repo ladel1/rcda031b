@@ -1,0 +1,12 @@
+package com.eni.jeuxvideo.bo;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "GAMES")
+public class Game {
+	
+	private Long id;
+
+}
