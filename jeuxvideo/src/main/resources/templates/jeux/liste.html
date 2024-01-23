@@ -17,7 +17,7 @@
 								<tr>
 									<th>Titre</th>
 									<th>Résumé</th>
-									<th>Genre</th>
+									<th>Catégorie</th>
 									<th>Date de sortie</th>
 									<th>Platforme</th>
 									<th>Actions</th>
@@ -27,7 +27,7 @@
 								<tr th:each="game:${games}" th:object="${game}" >
 									<td th:text="*{titre}" ></td>
 									<td th:text="${( game.description ==null || game.description.length()<70)? game.description : game.description.substring(0,70)}" ></td>
-									<td th:text="*{genre}" ></td>
+									<td th:text="*{category.nom}" ></td>
 									<td th:text="*{dateSortie}" ></td>
 									<td th:text="*{platform}" ></td>
 									<td>

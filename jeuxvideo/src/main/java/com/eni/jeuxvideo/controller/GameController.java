@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.eni.jeuxvideo.bll.CategoryService;
 import com.eni.jeuxvideo.bll.GameService;
 import com.eni.jeuxvideo.bo.Game;
 
@@ -17,16 +18,19 @@ public class GameController {
 
 	@Autowired
 	private GameService gameService;
+	@Autowired
+	private CategoryService categoryService;
 	
 	@GetMapping("/jeux/ajouter")
 	public String afficherFormulaire(Model model) {
 		model.addAttribute("game", new Game());
+		model.addAttribute("categories",categoryService.getAllCategories());
 		return "jeux/ajouter";
 	}
 	
 	@PostMapping("/jeux/ajouter")
 	public String ajouter(@ModelAttribute Game game) {
-		gameService.ajouter(game);
+		gameService.ajouter(game);		
 		//redirection vers la liste de jeux
 		return "redirect:/jeux/";
 	}
@@ -46,6 +50,7 @@ public class GameController {
 	@GetMapping("/jeux/modifier/{id:[0-9]+}")
 	public String afficherFormulaireModifier(@PathVariable(name="id") Long id,Model model) {
 		model.addAttribute("game", gameService.selectionnerParId(id));
+		model.addAttribute("categories",categoryService.getAllCategories());
 		return "jeux/modifier";
 	}
 	

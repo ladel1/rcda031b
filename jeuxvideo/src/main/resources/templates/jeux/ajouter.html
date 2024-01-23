@@ -29,8 +29,12 @@
 						  <input type="text" class="form-control" id="editeur" th:field="*{editeur}" placeholder="ex. Bethesda Game Studios">
 						</div>
 						<div class="mb-3">
-						  <label for="genre" class="form-label">Genre</label>
-						  <input type="text" class="form-control" id="genre" th:field="*{genre}" placeholder="ex. Aventure">
+						  <label for="category" class="form-label">Catégorie</label>
+						  <select  class="form-select" id="category" th:field="*{category}">
+						  	<option th:each="category: ${categories}" 
+								  	th:value="${category.id}" 
+								  	th:text="${category.nom}" ></option>
+						  </select>
 						</div>
 						<div class="mb-3">
 						  <label for="dateSortie" class="form-label">Date de sortie</label>
