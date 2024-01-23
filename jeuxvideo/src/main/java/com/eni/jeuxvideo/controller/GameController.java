@@ -55,5 +55,12 @@ public class GameController {
 		//redirection vers la liste de jeux
 		return "redirect:/jeux/";
 	}
+	// CSRF
+	@GetMapping("/jeux/supprimer/{id:[0-9]+}")
+	public String supprimer(Game game) {
+		gameService.supprimer(game);
+		return "redirect:/jeux/";
+	}
+	
 	
 }

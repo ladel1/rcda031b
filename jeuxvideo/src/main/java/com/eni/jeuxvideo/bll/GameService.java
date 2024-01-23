@@ -10,6 +10,6 @@ public interface GameService {
 	void modifier(Game game);
 	Game selectionnerParId(Long id);
 	List<Game> selectionnerTous();
-	default void supprimer(Game game) {}
+	void supprimer(Game game);
 	
 }

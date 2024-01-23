@@ -33,6 +33,11 @@ public class GameServiceImpl implements GameService {
 	public List<Game> selectionnerTous() {		
 		return gameDao.findAll();
 	}
+
+	@Override
+	public void supprimer(Game game) {
+		gameDao.delete(game);
+	}
 	
 
 }
