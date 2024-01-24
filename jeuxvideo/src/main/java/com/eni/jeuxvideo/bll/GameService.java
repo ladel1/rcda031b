@@ -11,5 +11,6 @@ public interface GameService {
 	Game selectionnerParId(Long id);
 	List<Game> selectionnerTous();
 	void supprimer(Game game);
+	float calculerMoyenneNotes(Game game);
 	
 }

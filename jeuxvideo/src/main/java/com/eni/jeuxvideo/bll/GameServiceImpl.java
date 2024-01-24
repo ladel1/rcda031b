@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.eni.jeuxvideo.bo.Avis;
 import com.eni.jeuxvideo.bo.Game;
+import com.eni.jeuxvideo.dal.AvisDao;
 import com.eni.jeuxvideo.dal.GameDao;
 
 @Service
@@ -13,6 +15,9 @@ public class GameServiceImpl implements GameService {
 
 	@Autowired
 	private GameDao gameDao;
+	
+	@Autowired
+	private AvisDao avisDao;
 	
 	@Override
 	public void ajouter(Game game) {
@@ -38,6 +43,18 @@ public class GameServiceImpl implements GameService {
 	public void supprimer(Game game) {
 		gameDao.delete(game);
 	}
+
+	@Override
+	public float calculerMoyenneNotes(Game game) {
+		List<Avis> listeAvis = avisDao.findByGame(game);
+		float moyenne = 0;
+		for (Avis avis : listeAvis) {
+			moyenne += (float)avis.getNote()/listeAvis.size();
+		}
+		return moyenne;
+	}
+	
+	
 	
 
 }

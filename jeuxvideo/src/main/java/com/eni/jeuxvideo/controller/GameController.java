@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.eni.jeuxvideo.bll.AvisService;
 import com.eni.jeuxvideo.bll.CategoryService;
 import com.eni.jeuxvideo.bll.GameService;
+import com.eni.jeuxvideo.bo.Avis;
 import com.eni.jeuxvideo.bo.Game;
 
 
@@ -20,6 +22,8 @@ public class GameController {
 	private GameService gameService;
 	@Autowired
 	private CategoryService categoryService;
+	@Autowired
+	private AvisService avisService;	
 	
 	@GetMapping("/jeux/ajouter")
 	public String afficherFormulaire(Model model) {
@@ -43,8 +47,22 @@ public class GameController {
 	
 	@GetMapping("/jeux/detail/{id:[0-9]+}")
 	public String detail( @PathVariable(name="id") Long id, Model model ) {
-		model.addAttribute("game", gameService.selectionnerParId(id));
+		Game game = gameService.selectionnerParId(id);
+		model.addAttribute("game", game);
+		model.addAttribute("listeAvis", avisService.trouverAvisParJeu(game) );
+		model.addAttribute("avis",new Avis());
+		model.addAttribute("moyenne", gameService.calculerMoyenneNotes(game));
 		return "jeux/detail";
+	}
+	
+	@PostMapping("/jeux/detail/{idGame:[0-9]+}")
+	public String detailPostAvis( @PathVariable(name="idGame") Long idGame, 
+									@ModelAttribute Avis avis) {
+		// session 
+		// validation !!!
+		avis.setGame( gameService.selectionnerParId(idGame) );	
+		avisService.ajouterAvis(avis);
+		return "redirect:/jeux/detail/%d".formatted(idGame);
 	}
 	
 	@GetMapping("/jeux/modifier/{id:[0-9]+}")

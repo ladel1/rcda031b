@@ -1,6 +1,7 @@
 package com.eni.jeuxvideo.bo;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -11,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -50,5 +52,9 @@ public class Game {
 	
 	@Column
 	private int pegi;
+	
+	@OneToMany
+	@JoinColumn(name="game_id")
+	private List<Avis> avis;
 
 }
