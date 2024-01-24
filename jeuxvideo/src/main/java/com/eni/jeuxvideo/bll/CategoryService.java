@@ -9,4 +9,5 @@ import com.eni.jeuxvideo.bo.Category;
 
 public interface CategoryService {
 	List<Category> getAllCategories();
+	void ajouterCategory(Category category);
 }

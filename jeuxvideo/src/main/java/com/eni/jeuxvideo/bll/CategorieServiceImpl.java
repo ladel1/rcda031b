@@ -17,6 +17,11 @@ public class CategorieServiceImpl implements CategoryService {
 	public List<Category> getAllCategories() {		
 		return categoryDao.findAll();
 	}
+
+	@Override
+	public void ajouterCategory(Category category) {
+		categoryDao.save(category);
+	}
 	
 
 }

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://thymeleaf.org" >
+<head>
+</head>
+<body>
+	<div th:fragment="form(field)" class="mb-3">
+	  <label for="nom" class="form-label">Nom</label>
+	  <input type="text" class="form-control" id="nom" th:field="*{__${field}__}" placeholder="ex. Sport">
+	  <div th:replace="layouts/primary-layout :: validation(__${field}__)" ></div>	
+	</div>
+</body>
+</html>
