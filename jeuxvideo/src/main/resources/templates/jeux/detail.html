@@ -16,7 +16,14 @@
 					<p> <b>Description:</b> <span th:text="*{description}" ></span> </p>
 					<p> <b>PEGI:</b> <span th:text="*{pegi}" ></span> </p>
 					<p> <b>Mode:</b> <span th:text="*{mode}" ></span> </p>
-					<p> <b>Catégorie:</b> <span th:text="*{category.nom}" ></span> </p>
+					<p> <b>Catégorie:</b> 
+						<ul>
+							<li th:each="category:*{categories} ">							
+								<span th:text="${category.nom}" ></span> 
+							</li>						
+						</ul>
+					
+					</p>
 					<p> <b>Platforme:</b> <span th:text="*{platform}" ></span> </p>
 					<p> <b>Date de sortie:</b> <span th:text="*{dateSortie}" ></span> </p>
 					<p> <b>La moyenne des notes:</b> <span th:text="${moyenne}" ></span> </p>

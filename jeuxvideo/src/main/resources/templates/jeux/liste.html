@@ -27,7 +27,13 @@
 								<tr th:each="game:${games}" th:object="${game}" >
 									<td th:text="*{titre}" ></td>
 									<td th:text="${( game.description ==null || game.description.length()<70)? game.description : game.description.substring(0,70)}" ></td>
-									<td th:text="*{category.nom}" ></td>
+									<td>
+										<ul>
+											<li th:each="category:*{categories} ">							
+												<span th:text="${category.nom}" ></span> 
+											</li>						
+										</ul>
+									</td>
 									<td th:text="*{dateSortie}" ></td>
 									<td th:text="*{platform}" ></td>
 									<td>

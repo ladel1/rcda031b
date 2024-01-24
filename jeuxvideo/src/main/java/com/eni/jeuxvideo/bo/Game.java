@@ -11,6 +11,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -39,9 +41,13 @@ public class Game {
 	@Column(length = 50)
 	private String editeur;
 	
-	@ManyToOne
-	@JoinColumn(name = "category_id")
-	private Category category;
+	@ManyToMany
+	@JoinTable(
+			name = "games_categories",
+			joinColumns = @JoinColumn(name="game_id"),
+			inverseJoinColumns = @JoinColumn(name="category_id")
+			)
+	private List<Category> categories;
 	
 	@Column(length = 300)
 	private String description;
