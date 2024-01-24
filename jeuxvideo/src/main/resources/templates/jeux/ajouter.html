@@ -15,6 +15,7 @@
 						<div class="mb-3">
 						  <label for="titre" class="form-label">Titre</label>
 						  <input type="text" class="form-control" id="titre" th:field="*{titre}" placeholder="ex. StarField">
+						  <div th:replace="layouts/primary-layout :: validation('titre')" ></div>	
 						</div>
 						<div class="mb-3">
 						  <label for="description" class="form-label">Description</label>
@@ -23,10 +24,12 @@
 						<div class="mb-3">
 						  <label for="platform" class="form-label">Platforme</label>
 						  <input type="text" class="form-control" id="platform" th:field="*{platform}" placeholder="ex. PlayStation">
+						  <div th:replace="layouts/primary-layout :: validation('platform')" ></div>
 						</div>
 						<div class="mb-3">
 						  <label for="editeur" class="form-label">Editeur</label>
 						  <input type="text" class="form-control" id="editeur" th:field="*{editeur}" placeholder="ex. Bethesda Game Studios">
+						  <div th:replace="layouts/primary-layout :: validation('editeur')" ></div>
 						</div>
 						<div class="mb-3">
 						  <label for="category" class="form-label">Catégorie</label>
@@ -49,7 +52,7 @@
 						  <input type="text" class="form-control" id="mode" th:field="*{mode}" placeholder="ex. Solo|CO-OP">
 						</div>
 						<button type="submit" class="btn btn-dark" >Ajouter</button>
-					</form>
+					</form>	
 				</div>
 			</div>
 		</main>

@@ -3,6 +3,7 @@ package com.eni.jeuxvideo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +13,10 @@ import com.eni.jeuxvideo.bll.AvisService;
 import com.eni.jeuxvideo.bll.CategoryService;
 import com.eni.jeuxvideo.bll.GameService;
 import com.eni.jeuxvideo.bo.Avis;
+import com.eni.jeuxvideo.bo.Category;
 import com.eni.jeuxvideo.bo.Game;
+
+import jakarta.validation.Valid;
 
 
 @Controller
@@ -28,12 +32,19 @@ public class GameController {
 	@GetMapping("/jeux/ajouter")
 	public String afficherFormulaire(Model model) {
 		model.addAttribute("game", new Game());
+		model.addAttribute("category", new Category());
+		
 		model.addAttribute("categories",categoryService.getAllCategories());
 		return "jeux/ajouter";
 	}
 	
+	
 	@PostMapping("/jeux/ajouter")
-	public String ajouter(@ModelAttribute Game game) {
+	public String ajouter( 
+			@Valid @ModelAttribute Game game,
+			BindingResult br
+			) {
+		if( br.hasErrors() ) return "jeux/ajouter";		
 		gameService.ajouter(game);		
 		//redirection vers la liste de jeux
 		return "redirect:/jeux/";

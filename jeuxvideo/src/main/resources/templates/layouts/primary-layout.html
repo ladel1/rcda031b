@@ -29,6 +29,13 @@
 			  </div>
 			</nav>		
 		</header>
+		<!-- Début validation et affichage d'erreurs ********* -->
+		  <div th:fragment="validation(field)" class="text-danger" th:if="${ #fields.hasErrors(field) }">
+		  		<ul>
+		  			<li th:each="error: ${#fields.errors(field)}" th:text="${error}" ></li>
+		  		</ul>
+		  </div>
+		<!-- Fin validation et affichage d'erreurs   ********* -->		  
 		<main>
 		</main>
 		<footer class="row bg-dark text-white mt-5">
