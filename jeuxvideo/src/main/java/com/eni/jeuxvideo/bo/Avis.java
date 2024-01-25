@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -24,6 +25,7 @@ public class Avis {
 	@Column(length = 30)
 	private String auteur;
 	
+	@ToString.Exclude
 	@ManyToOne
 	private Game game;
 	

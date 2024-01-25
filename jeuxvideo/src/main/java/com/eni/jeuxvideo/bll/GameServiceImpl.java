@@ -53,8 +53,11 @@ public class GameServiceImpl implements GameService {
 		}
 		return moyenne;
 	}
-	
-	
-	
+
+	@Override
+	public List<Game> searchGames(String query) {
+		return gameDao.searchByKeyword(query);
+	}
+
 
 }

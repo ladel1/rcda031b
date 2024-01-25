@@ -12,5 +12,5 @@ public interface GameService {
 	List<Game> selectionnerTous();
 	void supprimer(Game game);
 	float calculerMoyenneNotes(Game game);
-	
+	List<Game> searchGames(String query);
 }

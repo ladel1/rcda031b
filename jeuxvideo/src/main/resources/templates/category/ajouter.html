@@ -11,8 +11,13 @@
 			</div>
 			<div class="row">
 				<div class="col-8 offset-2">
+					<ul th:object="${category}">
+						<li th:each="att: ${category.getClass().declaredFields}" th:text="${att}" >
+							
+						</li>
+					</ul>
 					<form method="POST" th:action="@{/categories/ajouter}" th:object="${category}" >
-						<div th:replace="fragments/form :: form(nom)"></div>
+						<div th:replace="fragments/form :: form(nom,'text')"></div>
 						<button type="submit" class="btn btn-dark" >Ajouter</button>
 					</form>	
 				</div>

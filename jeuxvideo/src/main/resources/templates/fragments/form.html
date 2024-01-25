@@ -3,9 +3,22 @@
 <head>
 </head>
 <body>
-	<div th:fragment="form(field)" class="mb-3">
-	  <label for="nom" class="form-label">Nom</label>
-	  <input type="text" class="form-control" id="nom" th:field="*{__${field}__}" placeholder="ex. Sport">
+	<div th:fragment="form(field,type)" class="mb-3">
+	  <label for="nom" class="form-label" th:text="${field}"></label>
+	  <th:block th:switch="${type}" >
+	  	<th:block th:case="'textarea'" >
+	  		<textarea class="form-control" rows="3" ></textarea>
+	  	</th:block>
+	  	<th:block th:case="'select'" >
+	  		<select class="form-select"  ></select>
+	  	</th:block>
+	  	<th:block th:case="'button'" >
+	  		<button type="submit" class="btn btn-dark" >Ajouter</button>
+	  	</th:block>
+	  	<th:block th:case="*" >
+			<input th:type="${type}" class="form-control" id="nom" th:field="*{__${field}__}" placeholder="ex. Sport">	  	
+	  	</th:block>
+	  </th:block>	  
 	  <div th:replace="layouts/primary-layout :: validation(__${field}__)" ></div>	
 	</div>
 </body>

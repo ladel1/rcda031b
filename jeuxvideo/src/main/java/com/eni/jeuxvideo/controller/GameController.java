@@ -30,10 +30,9 @@ public class GameController {
 	private AvisService avisService;	
 	
 	@GetMapping("/jeux/ajouter")
-	public String afficherFormulaire(Model model) {
+	public String afficherFormulaire(Model model) {		
 		model.addAttribute("game", new Game());
-		model.addAttribute("category", new Category());
-		
+		model.addAttribute("category", new Category());		
 		model.addAttribute("categories",categoryService.getAllCategories());
 		return "jeux/ajouter";
 	}
