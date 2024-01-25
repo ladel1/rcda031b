@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="layouts/primary :: head('Liste de clients')" ></head>
+	<body>
+		<div class="container-fluid">			
+			<header th:replace="layouts/primary :: header" ></header>			
+			<main class="row">
+				<div th:replace="layouts/primary :: pageTitle('Liste de clients')" ></div> 
+				<div class="row">
+					<div class="col-8 offset-2">
+						<table class="table" >
+							<thead>
+								<tr>
+									<th>Nom</th>
+									<th>Prénom</th>
+									<th>Tel</th>
+									<th>Numéro de permis</th>					
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="client : ${clients}" th:object="${client}" >
+									<td th:text="*{nom}" ></td>
+									<td th:text="*{prenom}" ></td>
+									<td th:text="*{tel}" ></td>
+									<td th:text="*{numPermis}" ></td>						
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>						
+			</main>			
+			<header th:replace="layouts/primary :: footer" ></header>
+		</div>		
+	</body>
+</html>

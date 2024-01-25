@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="layouts/primary :: head('Modifier une voiture')" ></head>
+	<body>
+		<div class="container-fluid">			
+			<header th:replace="layouts/primary :: header" ></header>			
+			<main class="row">
+				<div th:replace="layouts/primary :: pageTitle('Modifier une Voiture')" ></div> 
+				<div class="row">
+					<div class="col-8 offset-2">
+						<form th:action="@{|/voitures/modifier/*{id}|}" method="post" th:object="${voiture}">
+						
+							<div class="mb-3">
+							  <label for="marque" class="form-label">Marque</label>
+							  <input type="text" class="form-control" id="marque" th:field="*{marque}">
+							</div>
+							<div class="mb-3">
+							  <label for="modele" class="form-label">Modele</label>
+							  <input type="text" class="form-control" id="modele" th:field="*{modele}">
+							</div>
+							<div class="mb-3">
+							  <label for="vitesseMax" class="form-label">Vitesse Max</label>
+							  <input type="number" class="form-control" id="vitesseMax" th:field="*{vitesseMax}">
+							</div>
+							<div class="mb-3">
+							  <label for="matricule" class="form-label">Matricule</label>
+							  <input type="text" class="form-control" id="matricule" th:field="*{matricule}">
+							</div>
+							<div class="mb-3">
+							  <label for="dateMiseService" class="form-label">Date Mise en Service</label>
+							  <input type="date" class="form-control" id="dateMiseService" th:field="*{dateMiseService}">
+							</div>
+							<div class="mb-3">
+							  <label for="tarifDeBase" class="form-label">Tarif De Base</label>
+							  <input type="text" class="form-control" id="tarifDeBase" th:field="*{tarifDeBase}">
+							</div>
+							<div class="mb-3">
+							  <label for="couleur" class="form-label">Couleur</label>
+							  <input type="text" class="form-control" id="couleur" th:field="*{couleur}">
+							</div>
+							
+							<button class="btn btn-primary" type="submit">Modifier</button>
+						
+						</form>
+					</div>
+				</div>						
+			</main>			
+			<header th:replace="layouts/primary :: footer" ></header>
+		</div>		
+	</body>
+</html>

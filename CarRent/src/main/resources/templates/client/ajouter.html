@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="layouts/primary :: head('Ajouter une client')" ></head>
+	<body>
+		<div class="container-fluid">			
+			<header th:replace="layouts/primary :: header" ></header>			
+			<main class="row">
+				<div th:replace="layouts/primary :: pageTitle('Ajouter une client')" ></div> 
+				<div class="row">
+					<div class="col-8 offset-2">
+						<form th:action="@{/clients/ajouter}" method="post" th:object="${client}">
+						
+							<div class="mb-3">
+							  <label for="prenom" class="form-label">Prenom</label>
+							  <input type="text" class="form-control" id="prenom" th:field="*{prenom}">
+							</div>
+							<div class="mb-3">
+							  <label for="nom" class="form-label">Nom</label>
+							  <input type="text" class="form-control" id="nom" th:field="*{nom}">
+							</div>
+							<div class="mb-3">
+							  <label for="dateDeNaissance" class="form-label">Date de naissance</label>
+							  <input type="date" class="form-control" id="dateDeNaissance" th:field="*{dateDeNaissance}">
+							</div>
+							<div class="mb-3">
+							  <label for="numPermis" class="form-label">Numéro de Permis</label>
+							  <input type="text" class="form-control" id="numPermis" th:field="*{numPermis}">
+							</div>
+							<div class="mb-3">
+							  <label for="adresse" class="form-label">Adresse</label>
+							  <input type="text" class="form-control" id="adresse" th:field="*{adresse}">
+							</div>
+							<div class="mb-3">
+							  <label for="tel" class="form-label">Tel°</label>
+							  <input type="tel" class="form-control" id="tel" th:field="*{tel}">
+							</div>
+							
+							<button class="btn btn-primary" type="submit">Ajouter</button>
+						
+						</form>
+					</div>
+				</div>						
+			</main>			
+			<header th:replace="layouts/primary :: footer" ></header>
+		</div>		
+	</body>
+</html>

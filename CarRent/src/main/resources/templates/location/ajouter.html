@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="layouts/primary :: head('Ajouter une location')" ></head>
+	<body>
+		<div class="container-fluid">			
+			<header th:replace="layouts/primary :: header" ></header>			
+			<main class="row">
+				<div th:replace="layouts/primary :: pageTitle('Ajouter une location')" ></div> 
+				<div class="row">
+					<div class="col-8 offset-2">
+						<form th:action="@{/locations/ajouter}" method="post" th:object="${location}">
+						
+							<div class="mb-3">
+							  <label for="client" class="form-label">Client</label>
+							  <select id="client" th:field="*{client}" >
+							  	<option th:each="item:${clients}" th:value="${item.id}" th:text="${item.nom}" ></option>
+							  </select>
+							</div>
+							<div class="mb-3">
+							  <label for="voiture" class="form-label">Voiture</label>
+							  <select id="voiture" th:field="*{voiture}" >
+							  	<option th:each="item:${voitures}" th:value="${item.id}" th:text="${item.modele}" ></option>
+							  </select>
+							</div>
+							<div class="mb-3">
+							  <label for="dateDebut" class="form-label">Date début de location</label>
+							  <input type="date" class="form-control" id="dateDebut" th:field="*{dateDebut}">
+							</div>
+							<div class="mb-3">
+							  <label for="dateRetour" class="form-label">Date de retour</label>
+							  <input type="date" class="form-control" id="dateRetour" th:field="*{dateRetour}">
+							</div>
+
+							
+							<button class="btn btn-primary" type="submit">Ajouter</button>
+						
+						</form>
+					</div>
+				</div>						
+			</main>			
+			<header th:replace="layouts/primary :: footer" ></header>
+		</div>		
+	</body>
+</html>

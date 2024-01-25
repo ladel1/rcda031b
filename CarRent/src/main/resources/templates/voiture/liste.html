@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="layouts/primary :: head('Liste de voitures')" ></head>
+	<body>
+		<div class="container-fluid">			
+			<header th:replace="layouts/primary :: header" ></header>			
+			<main class="row">
+				<div th:replace="layouts/primary :: pageTitle('Liste de voitrues')" ></div> 
+				<div class="row">
+					<div class="col-8 offset-2">
+						<table class="table" >
+							<thead>
+								<tr>
+									<th>Marque</th>
+									<th>Modele</th>
+									<th>Vitesse Max</th>
+									<th>Couleur</th>
+									<th>Tarif de base</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="voiture : ${voitures}" th:object="${voiture}" >
+									<td th:text="*{marque}" ></td>
+									<td th:text="*{modele}" ></td>
+									<td th:text="*{vitesseMax}" ></td>
+									<td th:text="*{couleur}" ></td>
+									<td th:text="*{tarifDeBase}" ></td>
+									<td>
+										<a th:href="@{|/voitures/*{id}|}" class="btn btn-info" ><i class="fa-regular fa-eye"></i></a>
+										<a th:href="@{|/voitures/modifier/*{id}|}" class="btn btn-success" ><i class="fa-regular fa-pen-to-square"></i></a>
+										<a th:href="@{|/voitures/supprimer/*{id}|}" class="btn btn-danger"  onclick="return confirm('Voulez-vous vraiement supprimer cette voiture ?');" ><i class="fa-solid fa-trash"></i></a>										
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>						
+			</main>			
+			<header th:replace="layouts/primary :: footer" ></header>
+		</div>		
+	</body>
+</html>

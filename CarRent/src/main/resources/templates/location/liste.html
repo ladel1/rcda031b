@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="layouts/primary :: head('Liste de locations')" ></head>
+	<body>
+		<div class="container-fluid">			
+			<header th:replace="layouts/primary :: header" ></header>			
+			<main class="row">
+				<div th:replace="layouts/primary :: pageTitle('Liste de voitrues')" ></div> 
+				<div class="row">
+					<div class="col-8 offset-2">
+						<table class="table" >
+							<thead>
+								<tr>
+									<th>Voiture</th>
+									<th>Client</th>
+									<th>Date de début</th>
+									<th>Date de retour</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="location : ${locations}" th:object="${location}" >
+									<td th:text="*{voiture.modele}" ></td>
+									<td th:text="*{client.nom}" ></td>
+									<td th:text="*{dateDebut}" ></td>
+									<td th:text="*{dateRetour}" ></td>					
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>						
+			</main>			
+			<header th:replace="layouts/primary :: footer" ></header>
+		</div>		
+	</body>
+</html>

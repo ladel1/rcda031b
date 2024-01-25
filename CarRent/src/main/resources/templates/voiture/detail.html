@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="layouts/primary :: head('Liste de voitures')" ></head>
+	<body>
+		<div class="container-fluid">			
+			<header th:replace="layouts/primary :: header" ></header>			
+			<main class="row">
+				<div th:replace="layouts/primary :: pageTitle('Liste de voitrues')" ></div> 
+				<div class="row">
+					<div class="col-8 offset-2">
+						<h6 th:text="${voiture.marque}" ></h6>
+						<h6 th:text="${voiture.modele}" ></h6>
+						<h6 th:text="${voiture.vitesseMax}" ></h6>
+						<h6 th:text="${voiture.tarifDeBase}" ></h6>
+						<h6 th:text="${voiture.couleur}" ></h6>
+						<h6 th:text="${voiture.dateMiseService}" ></h6>
+						<h6 th:text="${voiture.matricule}" ></h6>
+					</div>
+				</div>						
+			</main>			
+			<header th:replace="layouts/primary :: footer" ></header>
+		</div>		
+	</body>
+</html>
