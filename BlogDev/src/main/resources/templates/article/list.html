@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Liste des articles</h1>
+	<ul>
+		<li th:each="article :${articles}" >
+			<h3 th:text="${article.titre}" ></h3>
+			<a th:href="@{|/articles/detail/${article.id}|}">Voir plus</a>
+		</li>
+	</ul>
+</body>
+</html>
