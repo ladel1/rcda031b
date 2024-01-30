@@ -46,7 +46,8 @@ public class UserServiceImpl implements UserService {
 			if(!users.get(i).getRoles().contains(role)) {
 				users.remove(i);
 			}
-		};		
+		};	
+		//System.out.println(users);
 		return users;
 	}
 

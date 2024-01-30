@@ -20,6 +20,11 @@ public class WebSecurity {
 					auth->{
 						auth.requestMatchers("/mon-compte/**").authenticated();
 						auth.requestMatchers("/users/**").hasRole("CONSEILLER");
+						auth.requestMatchers("/mon-profil/**").hasRole("CONSEILLER");
+						auth.requestMatchers("/comptes/crediter/**").hasRole("CONSEILLER");
+						auth.requestMatchers("/clients/mes-clients/**").hasRole("CONSEILLER");
+						auth.requestMatchers("/comptes/debiter/**").hasRole("CLIENT");
+						auth.requestMatchers("/comptes/virement/**").hasRole("CLIENT");
 						auth.anyRequest().permitAll();
 					})
 				.formLogin( login->{
@@ -29,7 +34,7 @@ public class WebSecurity {
 				})
 				.logout( logout->{
 					logout.logoutUrl("/logout");
-					logout.logoutSuccessUrl("/");
+					logout.logoutSuccessUrl("/login");
 				})
 				.build()
 				;

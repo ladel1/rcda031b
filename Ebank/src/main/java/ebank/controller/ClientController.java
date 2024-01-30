@@ -37,6 +37,12 @@ public class ClientController {
 		model.addAttribute("client", client);
 		return "client/add";
 	}
+	@GetMapping("/mes-clients")
+	public String addClientGet(
+			
+			) {
+		return "client/list";
+	}
 	
 	@PostMapping("/ajouter/{user:[0-9]+}")
 	public String addClientPost(
@@ -44,10 +50,8 @@ public class ClientController {
 			@AuthenticationPrincipal User currentUser
 			) {
 			client.setConseiller(currentUser.getConseiller());
-			System.err.println(client);
 			clientService.add(client);
-			System.err.println(client);
-		return "redirect:/mes-clients";
+		return "redirect:/clients/mes-clients";
 	}
 	
 }

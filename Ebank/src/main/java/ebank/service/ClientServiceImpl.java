@@ -1,5 +1,7 @@
 package ebank.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -30,6 +32,12 @@ public class ClientServiceImpl implements Service<Client> {
 	@Override
 	public void remove(Client t) {
 		clientRepository.delete(t);
+	}
+
+	@Override
+	public List<Client> getAll() {
+		// TODO Auto-generated method stub
+		return clientRepository.findAll();
 	}
 
 }

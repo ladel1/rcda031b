@@ -26,6 +26,7 @@ public class PersonneController {
 			) {
 		
 		
+		
 		if(currentUser.getConseiller()!=null) {					
 			model.addAttribute("profil", currentUser.getConseiller() );
 		}else {
@@ -42,7 +43,7 @@ public class PersonneController {
 			@AuthenticationPrincipal User currentUser
 			) {						
 			conseillerService.add(profil);
-			System.err.println(profil);
+			currentUser.setConseiller(profil);
 		return "redirect:/mon-profil";
 	}
 	

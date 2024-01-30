@@ -21,12 +21,19 @@
 			    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			      <div class="navbar-nav">
 			        <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+			        <a sec:authorize="hasRole('CLIENT')" class="nav-link" th:href="@{/comptes/debiter}">Débiter</a>
+			        <a sec:authorize="hasRole('CLIENT')" class="nav-link" th:href="@{/comptes/virement}">Virement</a>
+			        <a sec:authorize="hasRole('CONSEILLER')" class="nav-link" th:href="@{/clients/mes-clients}">Mes Clients</a>
+			        <a sec:authorize="hasRole('CONSEILLER')" class="nav-link" href="/users/">Les utilisateurs</a>
 			        <a class="nav-link" href="#">Contact</a>
 			        <a class="nav-link" th:href="@{/inscription}">Inscription</a>
 			        <a class="nav-link" th:href="@{/login}">Connexion</a>
+			        <form method="post" th:action="@{/logout}" >
+			        	<button class="nav-link" type="submit" >Déconnexion</button>
+			        </form>
 			      </div>
 			    </div>
-			    <a th:href="@{/mon-profil}" class="nav-link" >Mon Profil</a>
+			    <a sec:authorize="hasRole('CONSEILLER')" th:href="@{/mon-profil}" class="nav-link" >Mon Profil</a>
 			  </div>
 			</nav>		
 		</header>

@@ -1,11 +1,14 @@
 package ebank.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import ebank.entity.Compte;
 import ebank.repository.CompteRepository;
 import jakarta.transaction.Transactional;
 
+@org.springframework.stereotype.Service
 public class CompteServiceImpl implements CompteService {
 
 	@Autowired
@@ -50,6 +53,12 @@ public class CompteServiceImpl implements CompteService {
 	public void virement(Compte emitteur, Compte beneficiaire, float montant) throws Exception {
 		debiter(emitteur, montant);
 		crediter(beneficiaire, montant);
+	}
+
+	@Override
+	public List<Compte> getAll() {
+		// TODO Auto-generated method stub
+		return compteRepository.findAll();
 	}
 
 }

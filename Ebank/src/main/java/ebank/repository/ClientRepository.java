@@ -7,5 +7,5 @@ import ebank.entity.Client;
 
 
 public interface ClientRepository extends JpaRepository<Client, Long> {
-
+	
 }

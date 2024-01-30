@@ -1,5 +1,7 @@
 package ebank.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import ebank.entity.Conseiller;
@@ -33,6 +35,12 @@ public class ConseillerServiceImpl implements Service<Conseiller> {
 	public void remove(Conseiller t) {
 		// TODO Auto-generated method stub
 		conseillerRepository.delete(t);
+	}
+
+	@Override
+	public List<Conseiller> getAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 
