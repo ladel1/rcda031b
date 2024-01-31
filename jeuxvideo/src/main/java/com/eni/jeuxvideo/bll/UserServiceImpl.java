@@ -30,9 +30,16 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void addUser(User user) {
+	public void addUser(User user) throws Exception {
+		validerPassword(user);
 		user.setPassword( passwordEncoder.encode( user.getPassword() ) );
 		userDao.save(user);
+	}
+	
+	private void validerPassword(User user) throws Exception {
+		if(user == null) throw new Exception("L'objet utilisateur est null");
+		if(!user.getPassword().equals(user.getPlainPassword()))
+			throw new Exception("Les deux mots de passe ne sont pas identiques!");
 	}
 
 }

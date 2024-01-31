@@ -35,6 +35,17 @@
 						  <input type="password" class="form-control" id="password" th:field="*{password}">
 						  <div th:replace="layouts/primary-layout :: validation('password')" ></div>
 						</div>
+						<div class="mb-3">
+						  <label for="plainPassword" class="form-label">Confirmation Password</label>
+						  <input type="password" class="form-control" id="plainPassword" th:field="*{plainPassword}">
+						  <div th:replace="layouts/primary-layout :: validation('plainPassword')" ></div>
+						</div>
+						  <div class="text-danger" th:if="${ #fields.hasErrors('*') }">
+						  		
+						  		<ul>
+						  			<li th:each="error: ${#fields.errors('global')}" th:text="${error}" ></li>
+						  		</ul>
+						  </div>	
 						<button type="submit" class="btn btn-dark" >S'inscrire</button>
 					</form>	
 				</div>

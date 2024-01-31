@@ -15,6 +15,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -47,6 +48,10 @@ public class User implements UserDetails {
 	@NotBlank(message="Erreur: Le champs Password est obligatoire!")
 	@Column(length = 256,nullable = false)
 	private String password;
+	
+	@NotBlank(message="Erreur: Le champs confirmation password est obligatoire!")
+	@Transient
+	private String plainPassword;
 	
 	
 	@Override
