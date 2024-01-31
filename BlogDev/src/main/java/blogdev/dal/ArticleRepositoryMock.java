@@ -11,8 +11,8 @@ import com.github.javafaker.Faker;
 import blogdev.bo.Article;
 import blogdev.bo.Category;
 
-@Repository
-@Primary
+//@Repository
+//@Primary
 public class ArticleRepositoryMock implements ArticleDao {
 
 	private List<Article> articles ;
@@ -60,6 +60,12 @@ public class ArticleRepositoryMock implements ArticleDao {
 	@Override
 	public List<Article> findAll() {
 		return articles;
+	}
+
+	@Override
+	public Article findByTitre(String titre) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

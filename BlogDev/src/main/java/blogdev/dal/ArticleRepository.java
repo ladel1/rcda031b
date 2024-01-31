@@ -24,12 +24,25 @@ public class ArticleRepository implements ArticleDao {
 	private final static String SELECT_BY_ID = "SELECT * FROM articles WHERE id = :id";
 	private final static String SELECT_BY_ID_EAGER = "SELECT a.*, c.nom FROM articles a "
 			+ "INNER JOIN categories c ON a.category_id = c.id WHERE a.id = :id";
+	
+	private final static String SELECT_BY_TITRE = "SELECT * FROM articles WHERE titre LIKE :titre";
+	private final static String SELECT_BY_TITRE_EAGER = "SELECT a.*, c.nom FROM articles a "
+			+ "INNER JOIN categories c ON a.category_id = c.id WHERE a.titre LIKE :titre";
+	
 	private final static String SELECT_ALL = "SELECT * FROM articles";
 	private final static String SELECT_ALL_EAGER = "SELECT a.*, c.nom FROM articles a "
 			+ "INNER JOIN categories c ON a.category_id = c.id";
 	
 	@Autowired
 	private NamedParameterJdbcTemplate npjt;
+	
+	@Override
+	public Article findByTitre(String titre) {
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("titre", "%"+titre+"%");		
+		return npjt.queryForObject(SELECT_BY_TITRE_EAGER, param, new ArticleMapper());
+	}
+	
 	
 	@Override
 	public Article findById(long pk) {
@@ -100,6 +113,8 @@ public class ArticleRepository implements ArticleDao {
 		}
 		
 	}
+
+
 
 	
 }

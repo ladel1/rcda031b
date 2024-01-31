@@ -7,6 +7,7 @@ import blogdev.bo.Article;
 public interface ArticleDao {
 
 	Article findById(long pk);
+	Article findByTitre(String titre);
 	void insert(Article article);
 	List<Article> findAll();
 }
