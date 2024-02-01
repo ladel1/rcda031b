@@ -2,25 +2,57 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Ajouter un article</title>
+<title th:text="#{title_page_add}" ></title>
+<style>
+	.icon-bar {
+	    width: 40px;
+	    background-color: #c3c3c3;
+	}
+	
+	.icon-bar a {
+	    display: block;
+	    text-align: center;
+	    padding: 4px;
+	    transition: all 0.3s ease;
+	    color: white;
+	    font-size: 30px;
+	    
+	}
+	
+	.icon-bar a:hover {
+	    background-color: #000;
+	}
+	
+	.active {
+	    background-color: #cecece !important;
+	}
+	
+	.flags img {
+	  width: 100%;
+	}
+</style>
 </head>
 <body>
-	<h1>Ajouter un article</h1>
+	<div class="icon-bar">
+	  <a class="flags" href="?lang=fr"><img src="https://flagsapi.com/FR/flat/64.png" alt="FR"></a> 
+	  <a  class="flags" href="?lang=en"><img src="https://flagsapi.com/GB/flat/64.png" alt="US"></a>   
+	</div>
+	<h1 th:text="#{title_page_add}" ></h1>
 	<form th:action="@{/articles/ajouter}" method="post" th:object="${article}" >
 		<div>
-			<label>Titre</label>
+			<label th:text="#{title_label}" ></label>
 			<input type="text" th:field="*{titre}" >
 		</div>
 		<div>
-			<label>Contenu</label>
+			<label th:text="#{content_label}" ></label>
 			<textarea th:field="*{contenu}" >
 			</textarea>
 		</div>
 		<div>
-			<label>Auteur/trice</label>
+			<label th:text="#{author_label}" ></label>
 			<input type="text" th:field="*{auteur}" >
 		</div>
-		<button type="submit" >Ajouter</button>
+		<button type="submit" th:text="#{add_btn}" ></button>
 	</form>
 </body>
 </html>

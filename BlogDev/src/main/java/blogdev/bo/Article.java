@@ -39,8 +39,5 @@ public class Article {
 	
 	private Category category;
 	
-	public String getTitre() {
-		return titre.toUpperCase();
-	}
 	
 }
