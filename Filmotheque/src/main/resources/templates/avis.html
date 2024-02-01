@@ -1,0 +1,28 @@
+<!-- avec : layout:decorate="~{layout}"
+je vais reprendre la base du HTML de mon layout présent dans le fichier layout.html
+Les balises que je redéfini vont surcharger celles de mon layout -->
+<html lang="en" layout:decorate="~{layout}">
+<head>
+   <!-- va surcharger la balise title de mon layout -->
+    <title th:text="|Avis sur le film : ${film.titre}|"></title>
+</head>
+<body>
+    <!-- pas besoin de header car je veux reprendre celui de mon layout tel quel -->
+
+    <!-- layout:fragment="content" : on va remplacer le main de notre layout par celui-ci -->
+    <main layout:fragment="content">
+        <h1 th:text="|Avis sur le film : ${film.titre}|"></h1>
+
+        <!-- 
+			On isole dans un fragment le formualire d'ajout d'avis (plus flexible au cas où on souhaite faire une modif plus tard)
+		-->
+        <form th:replace="~{fragments/formulaireAvis :: form}"></form>
+
+    </main>
+
+    <!-- pas besoin de footer car je veux reprendre celui de mon layout tel quel -->
+
+
+</body>
+
+</html>

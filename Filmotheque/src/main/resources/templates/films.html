@@ -1,0 +1,50 @@
+<!-- avec : layout:decorate="~{layout}"
+je vais reprendre la base du HTML de mon layout présent dans le fichier layout.html
+Les balises que je redéfini vont surcharger celles de mon layout -->
+<html lang="en" layout:decorate="~{layout}">
+<head>
+   <!-- va surcharger la balise title de mon layout -->
+    <title>Films</title>
+</head>
+<body>
+    <!-- pas besoin de header car je veux reprendre celui de mon layout tel quel -->
+
+    <!-- layout:fragment="content" : on va remplacer le main de notre layout par celui-ci -->
+    <main layout:fragment="content">
+        <h1>Les films de l'ENI</h1>
+
+        <!-- on va afficher les films présents dans l'attribut de model : listeFilms -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Genre</th>
+                    <th>Année</th>
+                    <th>Titre</th>
+                    <th>Réalisateur</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- th:each je vais créer un <tr> pour tous les éléments de la liste de notre modèle : ${listeFilms} -->
+                <tr th:each=" film: ${listeFilms}">
+                    <td th:text="${film.genre.titre}"></td>
+                    <td th:text="${film.annee}"></td>
+                    <td th:text="${film.titre}"></td>
+                    <td th:text="|${film.realisateur.prenom} ${film.realisateur.nom}|"></td>
+                    <!-- je vais utiliser un href dynamique => th:href -->
+                    <td>
+						<a class="link-button" th:href="|films/${film.id}|">Détail</a>
+                        <!-- j'affiche le boutton Avis seulement si l'utilisateur est connecté -->
+                        <a sec:authorize="isAuthenticated()" class="link-button" th:href="|films/${film.id}/avis|">Avis</a>
+
+					</td>
+                </tr>
+            </tbody>
+
+        </table>
+    </main>
+
+    <!-- pas besoin de footer car je veux reprendre celui de mon layout tel quel -->
+</body>
+
+</html>

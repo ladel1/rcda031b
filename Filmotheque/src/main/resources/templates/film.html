@@ -1,0 +1,33 @@
+<!-- avec : layout:decorate="~{layout}"
+je vais reprendre la base du HTML de mon layout présent dans le fichier layout.html
+Les balises que je redéfini vont surcharger celles de mon layout -->
+<html lang="en" layout:decorate="~{layout}">
+<head>
+   <!-- va surcharger la balise title de mon layout -->
+    <title th:text="|Détail du film : ${film.titre}|"></title>
+</head>
+<body>
+    <!-- pas besoin de header car je veux reprendre celui de mon layout tel quel -->
+
+    <!-- layout:fragment="content" : on va remplacer le main de notre layout par celui-ci -->
+    <main layout:fragment="content">
+        <h1 th:text="|Détail du film : ${film.titre}|"></h1>
+
+        <!-- 
+			Afin de pouvoir réutiliser le même code lorsqu'on veut créer/modifier un film, 
+			on va référencer le fragment contenu dans la balise form de "fragments/formulaireFilm.html"
+			on lui passe en attributs :
+			1 - est-ce qu'on peut modifier les champs
+			2 - est-ce qu'on est sur une création
+			Ici, on ne peut pas modifier les champs et in n'est pas sur une création'
+		-->
+        <form th:replace="~{fragments/formulaireFilm :: form( false, false)}"></form>
+
+    </main>
+
+    <!-- pas besoin de footer car je veux reprendre celui de mon layout tel quel -->
+
+
+</body>
+
+</html>

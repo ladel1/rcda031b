@@ -1,0 +1,27 @@
+<!-- Notes :
+	- pas besoin de th:fragment="form" si on veut mettre le même nom que la balise et si on a pas de paramètres 
+	- th:object: le formulaire va referencer  l'attribut du modèle avis et envoyer un objet Avis lors de la validation du formulaire
+	- th:action : permete de mettre des variables dans l'attribut "action"
+					@{} permet de dire qu'on a une url relative à l'application Spring Boot (et pas au serveur)
+-->
+<form th:object="${avis}" th:action="@{|/films/${film.id}/avis|}" method="post">
+	<div class="form-element">
+		<label>Note : </label>
+		<!-- 
+			on utilise  th:field pour dire quel attribut d'AVis est référencé par le champs de saisie 
+			comme c'est une référence : on utilise : *{}
+		-->
+		<input type="text" th:field="*{note}">
+	</div>
+
+	<div class="form-element">
+		<label>Commentaire : </label>
+		<!-- 
+			on utilise  th:field pour dire quel attribut d'AVis est référencé par le champs de saisie 
+			comme c'est une référence : on utilise : *{}
+		-->
+		<textarea type="text" th:field="*{commentaire}"></textarea>
+	</div>
+
+	<button>Enregistrer</button>
+</form>

@@ -1,0 +1,93 @@
+<!--
+	On utilise ce fragment pour la création ET pour l'affichage des films
+	
+	Ca permet de ne pas dupliquer le code des différents champs 
+	
+	Notes : 
+	- th:object: le formulaire va referencer  l'attribut du modèle film et envoyer un objet Avis lors de la validation du formulaire
+	- th:action : permete de mettre des variables dans l'attribut "action"
+					@{} permet de dire qu'on a une url relative à l'application Spring Boot (et pas au serveur)
+					
+	- th:disabled="${!canEdit}" permet de désactiver la saisie des champs lorsqu'on est sur l'affichage d'un film uniquement
+-->
+<form th:object="${film}" th:action="@{|/film/creer|}" method="post" th:fragment="form(canEdit, creation)">
+	<div class="form-element">
+		<label>Genre : </label>
+		<!-- on utilise  th:field pour referencer le champs genre de Film -->
+		<select th:field="*{genre}" th:disabled="${!canEdit}">
+			<!-- 
+				on va faire une boucle sur les genres contenus dans le modèle 
+				Pour chaque genre, on a: th:value="${genre.id}"
+				on va faire en sorte d'envoyer l'id du genre (penser à créer un converter)
+				au controller Spring
+			-->
+			<option th:each=" genre: ${genres}" th:value="${genre.id}" th:text="${genre.titre}"></option>
+		</select>
+	</div>
+
+	<div class="form-element">
+		<label>Année : </label>
+		<!-- on utilise  th:field pour referencer le champs annee de Film -->
+		<input th:field="*{annee}"  type="number" th:disabled="${!canEdit}">
+	</div>
+
+	<div class="form-element">
+		<label>Titre : </label>
+		<!-- on utilise  th:field pour referencer le champs titre de Film -->
+		<input th:field="*{titre}"  type="text" th:disabled="${!canEdit}">
+	</div>
+
+	<div class="form-element">
+		<label>Réalisateur : </label>
+		<!-- on utilise  th:field pour referencer le champs réalisateur de Film -->
+		<select th:field="*{realisateur}" th:disabled="${!canEdit}">
+			<!-- 
+				on va faire une boucle sur les participants contenus dans le modèle 
+				Pour chaque participant, on a: th:value="${participant.id}"
+				on va faire en sorte d'envoyer l'id du participant (penser à créer un converter)
+				au controller Spring
+			-->
+			<option th:each=" participant: ${participants}" th:value="${participant.id}" th:text="|${participant.prenom} ${participant.nom}|"></option>
+		</select>
+	</div>
+
+	<div class="form-element">
+		<label>Durée : </label>
+		<!-- on utilise  th:value pour initialiser les champs des formulaire -->
+		<input th:field="*{duree}"  type="number" th:disabled="${!canEdit}">
+	</div>
+
+	<!-- Pour la liste des acteurs, on va utiliser une select multiple (disbaled)
+            qu'on va remplir (balises option) avec un th:each sur la liste des acteurs -->
+	<div class="form-element">
+		<label>Acteurs(s) : </label>
+
+		<select multiple th:field="*{acteurs}" th:disabled="${!canEdit}">
+			<!-- 
+				on va faire une boucle sur les participants contenus dans le modèle 
+				Pour chaque participant, on a: th:value="${participant.id}"
+				on va faire en sorte d'envoyer l'id du participant (penser à créer un converter)
+				au controller Spring
+			-->
+			<option th:each=" participant: ${participants}" th:value="${participant.id}" th:text="|${participant.prenom} ${participant.nom}|"></option>
+		</select>
+	</div>
+
+	<div class="form-element">
+		<label>Synopsis : </label>
+		<!-- on utilise  th:value pour initialiser les champs des formulaire -->
+		<textarea th:field="*{synopsis}"  type="text" th:disabled="${!canEdit}"></textarea>
+	</div>
+	
+	<!-- on doit faire un th:if sur : film.avis.isEmpty() car film.avis n'est jamais null (initialisé à liste vide) -->
+	<div th:if="${!film.avis.isEmpty()}" class="form-element">
+		<label>Commentaires : </label>
+		<ul>
+			<!-- on va boucle sur la liste des avis -->
+			<li th:each=" avis: ${film.avis}" th:text="|${avis.commentaire} [${avis.note}] - (${avis.membre.prenom})|"></li>
+		</ul>		
+	</div>
+
+	<!-- Si jamais on est sur une modification ou creation (attribut canEdit = true), on affiche le bouton de validation du formulaire -->
+	<button th:if="${canEdit}">Valider</button>
+</form>

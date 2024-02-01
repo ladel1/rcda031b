@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ici, le fichier style.css est dans le dossier static (car c'est une resource qu'on veut renvoyer sans modification), 
+    	mais va être disponible à l'url : http://localhost:8080/style.css 
+    	static est juste un dossier interne à Spring, ne doit pas être dans les liens/url -->
+    <link rel="stylesheet" href="/style.css">
+    <!-- titre par défaut (au cas où on oublie de redéfinir le title dans un de nos templates qui décore le layout) -->
+    <title>Filmothèque</title>
+</head>
+<body>
+    <!-- on va référencer le fragment "entete" contenu dans header.html -->
+    <header th:replace="~{fragments/header :: entete}"></header>
+    
+    <!-- Le contenu du main va être remplacé avec le contenu présent dans le main annoté layout:fragment="content" de notre fichier html qui décore ce layout  -->
+    <main layout:fragment="content">
+        Le contenu va être surchargé par les templates qui décorent ce layout
+    </main>
+
+    <!-- on va référencer le fragment "piedpage" contenu dans footer.html -->
+    <footer th:replace="~{fragments/footer :: piedpage}"></footer>
+
+    
+</body>
+</html>

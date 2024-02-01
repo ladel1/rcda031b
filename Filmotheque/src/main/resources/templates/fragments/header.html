@@ -1,0 +1,29 @@
+<header th:fragment="entete">
+	<div id="titre">
+		<img src="/logoFilmotheque.png" alt="logo filmotheque">
+		<h1><a href="/">Filmothèque</a></h1>
+	</div>
+	
+	<nav>
+		<ul>
+			<li><a href="/films">Films</a></li>
+			<!-- sec:authorize="hasRole('admin') : on n'affiche ce lien que si l'utilisateur connecté a le rôle 'admin' -->
+            <li sec:authorize="hasRole('admin')"><a href="/film/creer">Créer</a></li>
+		</ul>
+		
+		<!-- on n'affiche cette section que pour les utilisateurs connectés -->
+	<section sec:authorize="isAuthenticated()">
+		<!-- ${#authentication.name}" : recupère le username de l'utilisateur connecté-->
+		<!-- on offre la possibilité de se déconnecter -->
+		<form th:action="@{/logout}" method="post">
+			<button th:text="|déconnecter ${#authentication.name}|">Se deconnecter</button>
+		</form>
+	</section>
+	<!-- on n'affiche cette section que pour les utilisateurs NON connectés -->
+	<section sec:authorize="!isAuthenticated()"> <span>Vous n'êtes pas connecté :</span>
+		<!-- on offre la possibilité de se connecter --> <a th:href="@{/login}">Se connecter</a>
+	</section>
+	</nav>
+	
+	
+</header>

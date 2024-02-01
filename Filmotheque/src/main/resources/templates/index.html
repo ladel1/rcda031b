@@ -1,0 +1,19 @@
+<!-- avec : layout:decorate="~{layout}"
+je vais reprendre la base du HTML de mon layout présent dans le fichier layout.html
+Les balises que je redéfini vont surcharger celles de mon layout -->
+<html lang="en" layout:decorate="~{layout}">
+<head>
+   <!-- va surcharger la balise title de mon layout -->
+    <title>Accueil Filmothèque</title>
+</head>
+<body>
+    <!-- pas besoin de header car je veux reprendre celui de mon layout tel quel -->
+
+    <!-- layout:fragment="content" : on va remplacer le main de notre layout par celui-ci -->
+    <main layout:fragment="content" class="flex-center">
+        <h2>Voici la bibliothèque des films ENI de l'école</h2>
+    </main>
+
+    <!-- pas besoin de footer car je veux reprendre celui de mon layout tel quel -->
+</body>
+</html>
